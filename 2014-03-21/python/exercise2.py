@@ -168,3 +168,4 @@ WEST_R = T(2)(5)(T(1)(4)(R([1,2])(PI)(R([1,2])(PI/2)(R([2,3])(PI/2)(WEST)))))
 #VIEW(WEST_R)
 mock_up_3D = STRUCT([NORTH_R,SOUTH_R,EAST_R,WEST_R])
 VIEW(mock_up_3D)
+#Bisognava separare i "pezzi"!
