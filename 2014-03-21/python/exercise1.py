@@ -1,4 +1,9 @@
 #Floor0
+
+verts = [[0,0],[0,4],[4,4],[4,0]]
+cells = [[1,2,3,4]]
+pols = None
+base = MKPOL([verts,cells,pols])
 verts0_wall_rect_sx = [[0,0.65],[0.25,0.65],[0,3],[0.25,3]]
 cells0_wall_rect_sx = [[1,2,3,4]]
 pols = None
@@ -175,9 +180,13 @@ f0Color = COLOR(RED)(floor0)
 f1Color = COLOR(BLUE)(floor2)
 f2Color = COLOR(GREEN)(floor2)
 f3Color = COLOR(YELLOW)(floor3)
-building = STRUCT([f0Color,f1Color,f2Color,f3Color])
-f1t = T(3)(1)(f1Color)
-f2t = T(3)(2)(f2Color)
-f3t = T(3)(3)(f3Color)
-building = STRUCT([f0Color,f1t,f2t,f3t])
+f0 = STRUCT([f0Color,base])
+f1 = STRUCT([f1Color,base])
+f2 = STRUCT([f2Color,base])
+f3 = STRUCT([f3Color,base])
+building = STRUCT([f0,f1,f2,f3])
+f1t = T(3)(1)(f1)
+f2t = T(3)(2)(f2)
+f3t = T(3)(3)(f3)
+building = STRUCT([f0,f1t,f2t,f3t])
 VIEW(building)

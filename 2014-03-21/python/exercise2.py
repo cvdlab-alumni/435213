@@ -30,7 +30,8 @@ window_sq3 = T([1,2])([1.7,7.9])(window_sq3)
 window_sq3 = COLOR(BLUE)(window_sq3)
 EAST = STRUCT([EAST_base,EAST_cube,window_down,window_sq1,window_sq2,window_sq3])
 #VIEW(EAST)
-
+EAST_R = R([2,3])(PI/2)(EAST)
+#VIEW(EAST_R)
 #NORTH
 vertsNORTH_base = [[0.85,0],[4.85,0],[4.85,8.7],[0.85,8.7]]
 cellsNORTH_base = [[1,2,3,4]]
@@ -59,7 +60,8 @@ window_cube = T([1,2])([0.25,8.6])(window_cube)
 window_cube = COLOR(BLUE)(window_cube)
 
 NORTH = STRUCT([NORTH_base,NORTH_cube,window_Base,door,window_cube_rect,window_cube])
-VIEW(NORTH)
+NORTH_R = R([2,3])(PI/2)(NORTH)
+#VIEW(NORTH_R)
 
 #WEST
 vertsWEST_base = [[0,0],[4,0],[4,8.7],[0,8.7]]
@@ -120,5 +122,47 @@ rect4 = CUBOID([0.08,2.10])
 rect4 = T([1,2])([2.81,8.35])(rect4)
 rect4 = COLOR(YELLOW)(rect4)
 WEST = STRUCT([WEST_base,WEST_cube,window_big0,window_big1,window_big2,window_big3,window_WEST_sq0,window_WEST_sq0,window_WEST_sq1,window_WEST_sq2,rect1,rect2,rect3,rect4])
-VIEW(WEST)
+#VIEW(WEST)
+#VIEW(WEST_R)
 
+#SOUTH
+vertsSOUTH_base = [[0,0],[4,0],[4,8.7],[0,8.7]]
+cellsSOUTH_base = [[1,2,3,4]]
+pols = None 
+SOUTH_base = MKPOL([vertsSOUTH_base,cellsSOUTH_base,pols])
+SOUTH_base = COLOR(GRAY)(SOUTH_base)
+#VIEW(NORTH_base)
+
+vertsSOUTH_cube = [[0.8,6.25],[4.8,6.25],[0.8,10.45],[4.8,10.45]]
+cellsSOUTH_cube = [[1,2,3,4]]
+pols = None 
+SOUTH_cube = MKPOL([vertsSOUTH_cube,cellsSOUTH_cube,pols])
+SOUTH_cube = COLOR(GRAY)(SOUTH_cube)
+
+window_S_1 = CUBOID([0.67,2.05])
+window_S_1 = T([1,2])([1.6,0])(window_S_1)
+window_S_1 = COLOR(BLUE)(window_S_1)
+
+window_S_2 = CUBOID([0.67,2.1])
+window_S_2 = T([1,2])([1.6,2.05])(window_S_2)
+window_S_2 = COLOR(BLUE)(window_S_2)
+
+window_cube = CUBOID([3.6,3.6])
+window_cube = T([1,2])([1.05,6.5])(window_cube)
+window_cube = COLOR(BLUE)(window_cube)
+SOUTH = STRUCT([SOUTH_base,SOUTH_cube,window_S_1,window_S_2,window_cube])
+
+#VIEW(SOUTH_R)
+NORTH_R = R([2,3])(PI/2)(NORTH)
+SOUTH_R =T(1)(4)(R([2,3])(PI/2)(SOUTH))
+WEST_R = R([1,2])(PI/2)(R([2,3])(PI/2)(WEST))
+EAST_R = T(1)(4)((R([1,2])(PI/2)(R([2,3])(PI/2)(EAST))
+two_and_half_model = STRUCT([SOUTH_R,NORTH_R,WEST_R,EAST_R])
+VIEW(two_and_half_model)
+WEST_R = R([1,2])(PI/2)(R(2,3)(PI/2)(WEST))
+EAST_R = T(1)(4)(R([1,2])(PI/2)(R([2,3]))(PI/2)(EAST))
+SOUTH_R =T(4)(1)(R([2,3])(PI/2)(SOUTH))
+
+
+two_and_half_model = STRUCT([EAST_R,NORTH_R,WEST_R,SOUTH_R])
+VIEW(two_and_half_model)
