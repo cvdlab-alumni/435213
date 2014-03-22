@@ -4,6 +4,7 @@ verts = [[0,0],[0,4],[4,4],[4,0]]
 cells = [[1,2,3,4]]
 pols = None
 base = MKPOL([verts,cells,pols])
+
 verts0_wall_rect_sx = [[0,0.65],[0.25,0.65],[0,3],[0.25,3]]
 cells0_wall_rect_sx = [[1,2,3,4]]
 pols = None
