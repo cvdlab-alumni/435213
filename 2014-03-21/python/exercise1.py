@@ -1,21 +1,52 @@
-#Floor -0
-verts_basement_ext = [[0,0],[4,0],[4,4],[0,4]]
-cells_basement_ext = [[1,2,3,4]]
-pols = None
-floor_ext = MKPOL([verts_basement_ext, cells_basement_ext, pols])
-verts_basement_int = [[0.25,0.25],[3.75,0.25],[0.25,3.75],[3.75,3.75]]
-cells_basement_int = [[1,2,3,4]]
-floor_int = MKPOL([verts_basement_int, cells_basement_int, pols])
-#VIEW(SKELETON(1)(floor_int))
-
-verts_basement_wall = [[1.5,3.75],[1.65,3.75],[1.5,1.9],[1.65,1.7],[0.8,1.7],[0.9,1.9],[0.8,3.15],[0.9,3.15]]
-cells_basement_wall = [[1,2,3,4],[3,4,5,6],[5,6,7,8]]
-wall_int = MKPOL([verts_basement_wall, cells_basement_wall, pols])
-#VIEW(wall_int)
-basement = STRUCT([floor_int,floor_ext,wall_int])
-#VIEW((basement))
-
 #Floor0
+verts0_wall_rect_sx = [[0,0.65],[0.25,0.65],[0,3],[0.25,3]]
+cells0_wall_rect_sx = [[1,2,3,4]]
+pols = None
+wall0_rect_sx = MKPOL([verts0_wall_rect_sx,cells0_wall_rect_sx,pols])
+#VIEW(wall_rect_sx)
+
+verts0_wall_down_sx = [[0,0],[1.65,0],[1.65,0.3],[0.25,0.3],[0.25,0.4],[0,0.4]]
+cells0_wall_down_sx = [[1,2,3,4],[4,5,6,1]]
+pols = None
+wall0_down_sx = MKPOL([verts0_wall_down_sx,cells0_wall_down_sx,pols])
+#VIEW(wall0_down_sx)
+
+verts0_upstairs = [[0.8,1.8],[0.95,1.8],[0.95,3.1],[0.8,3.1]]
+cells0_upstairs = [[1,2,3,4]]
+pols = None
+wall0_upstairs = MKPOL([verts0_upstairs,cells0_upstairs,pols])
+#VIEW(wall_upstairs)
+
+verts0_wall_up = [[0,4],[0,3.75],[1.5,3.75],[1.8,4],[1.8,1.8],[1.5,1.8]]
+cells0_wall_up = [[1,2,3,4],[3,4,5,6]]
+pols = None
+wall0_up = MKPOL([verts0_wall_up,cells0_wall_up,pols])
+#VIEW(wall0_up)
+
+verts0_wall_down_dx = [[3.75,0.4],[4,0.4],[4,0],[3.75,0.3],[2.35,0],[2.45,0.3],[2.35,1.85],[2.45,1.85]]
+cells0_wall_down_dx =[[1,2,3,4],[3,5,6,4],[5,8,7,6]]
+pols = None
+wall0_down_dx = MKPOL([verts0_wall_down_dx,cells0_wall_down_dx,pols])
+#VIEW(wall_down_dx)
+
+
+verts0_wall_up_dx = [[2.3,2.5],[2.4,2.5],[2.3,4],[2.4,3.75],[4,4],[3.75,3.75],[3.75,0.65],[4,0.65]]
+cells0_wall_up_dx =[[1,2,3,4],[5,6,3,4],[5,6,7,8]]
+pols = None
+wall0_up_dx = MKPOL([verts0_wall_up_dx,cells0_wall_up_dx,pols])
+#VIEW(wall0_up_dx)
+
+verts0_T = [[1.15,0.3],[1.3,0.3],[1.15,1.2],[1.3,1.2],[1.15,1.2],[0.8,1.3],[0.95,1.2]]
+cells0_T = [[1,2,3,4]]
+wall_T = MKPOL([verts0_T,cells0_T,pols])
+#VIEW(wall_T)
+floor0 = STRUCT([wall0_rect_sx,wall0_down_sx,wall0_up,wall0_upstairs,wall0_down_dx,wall0_up_dx,wall_T])
+VIEW(floor0)
+
+
+
+
+
 verts0_ext = [[0,4],[1.65,4],[1.65,1.9],[1.5,1.9],[1.5,3.75],[0,3.75]]
 cells0_ext = [[1,2,5,6],[2,3,4,5]]
 pols = None
