@@ -1,5 +1,3 @@
-from pyplasm import *
-from numpy import *
 #Floor0
 
 verts = [[0,0],[0,4],[4,4],[4,0]]
