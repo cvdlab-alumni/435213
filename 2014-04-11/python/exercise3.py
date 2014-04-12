@@ -90,4 +90,5 @@ smallBasement = COLOR(smallBasement_color)(smallBasement)
 
 baseHouse = STRUCT([base,baseSmall,house4x4,house4x4gemella,capannone,houseRed,negozio,smallBasement])
 area = STRUCT([prato,sea,marciaPiede,marciaPiede2,street,baseHouse])
+
 VIEW(area)

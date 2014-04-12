@@ -150,5 +150,6 @@ vasi = STRUCT(NN(5)([vaso,T(2)(4)]))
 vasi = T([1,2])([18,30])(vasi)
 vasi = COLOR(wall_color)(vasi)
 
+
 city = STRUCT([city,streetlines,parking,railRoads,wallRailRoad,lamps,busStop,trees,busInfo,bench,wallsea,ponticello,vasi])
 VIEW(city)
