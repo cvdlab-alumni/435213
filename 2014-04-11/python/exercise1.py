@@ -1,6 +1,11 @@
 from larcc import *
 from pyplasm import *
-
+def rgb2color(rgb):
+	r,g,b = rgb
+	nr = float(r)/255
+	nb = float(b)/255
+	ng = float(g)/255
+	return [nr,nb,nb]
 V0 = [
 [0,4],[4,4],[4,0],[0,0],[1.65,4],[1.65,1.7],[1.6,1.7],[1.6,3.65],[0,3.65],
 [0,3.4],[0.3,3.4],[0.3,1.1],[0,1.1],[2.35,4],[4,0.75],
@@ -88,7 +93,7 @@ floor3m = STRUCT(MKPOLS([F35V,FV35V]))
 floor3m = T(3)(8.4)(PROD([floor3m, Q(0.3)]))
 
 floor4 = CUBOID([4,4,0.3])
-floor4 = T([1,2,3])([0.8,-0.8,10.25])(floor4)
+floor4 = T([1,2,3])([0.8,-0.8,10.1])(floor4)
 
 
 def face2edge(CV):
@@ -164,6 +169,18 @@ f03d = STRUCT(MKPOLS(mod11D0))
 f13d = STRUCT(MKPOLS(mod11D1))
 f23d= STRUCT(MKPOLS(mod11D2))
 f33d = STRUCT(MKPOLS(mod11D3))
+
+building_color = rgb2color([111,110,98])
+f03d = COLOR(building_color)(f03d)
+f13d = COLOR(building_color)(f13d)
+f23d = COLOR(building_color)(f23d)
+f33d = COLOR(building_color)(f33d)
+floor0 = COLOR(building_color)(floor0)
+floor1 = COLOR(building_color)(floor1)
+floor2 = COLOR(building_color)(floor2)
+floor3 = COLOR(building_color)(floor3)
+floor3m = COLOR(building_color)(floor3m)
+floor4 = COLOR(building_color)(floor4)
 building = STRUCT([floor0,floor1,floor2,floor3,floor3m,floor4,f03d,f13d,f23d,f33d])
 bulding = T(2)(0.8)(building)
 #VIEW(bulding)
