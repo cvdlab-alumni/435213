@@ -8,13 +8,14 @@ def rgb2color(rgb):
 	nb = float(b)/255
 	ng = float(g)/255
 	return [nr,nb,nb]
-
-
+sea_mat = [0.1,0.4,0.47,1,  0,0,0,0.6,  2,2,2,1, 0,0,0,1, 50]
+sea_color = rgb2color([44,91,130])
 prato = CUBOID([42.5,50,0.1])
-prato = COLOR(GREEN)(prato)
-sea = CUBOID([10,50,0.3])
+grassColor = rgb2color([16,186,49])
+prato = COLOR(grassColor)(prato)
+sea = CUBOID([20,50,0.01])
 sea = T(1)(42.5)(sea)
-sea = COLOR(BLUE)(sea)
+sea = MATERIAL(sea_mat)(sea)
 
 baseColor = rgb2color([56,54,50])
 base = CUBOID([15,50,0.2])
@@ -89,4 +90,4 @@ smallBasement = COLOR(smallBasement_color)(smallBasement)
 
 baseHouse = STRUCT([base,baseSmall,house4x4,house4x4gemella,capannone,houseRed,negozio,smallBasement])
 area = STRUCT([prato,sea,marciaPiede,marciaPiede2,street,baseHouse])
-#VIEW(area)
+VIEW(area)
