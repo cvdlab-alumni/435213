@@ -40,18 +40,18 @@ V2 = [
 FV2 = [[24,25,26,27,24],[10,11,12,28,10]]
 
 V3 = [
-[0,4],[1.65,4],[1.65,1.7],[1.6,1.7],[1.6,3.65],[0,3.65],
+[0,4],[1.65,3.65],[1.65,1],[1.55,1],[1.55,3.65],[0,3.65],
 [0,3.4],[0.3,3.4],[0.3,1.1],[0,1.1],[0,0],
 [0.3,0],[0.3,0.4],[0,0.4],[2.35,4],[4,4],
 [4,3],[3.7,3],[3.7,3.7],[2.35,3.7],[4.5,3.15],[4.8,3.15],
 [4.8,1.85],[4.5,1.85],[4.5,1.15],[4.8,1.15],
 [4.8,-0.8],[4.5,-0.8],[0.8,1.7],[1.1,1.7],[1.1,-0.8],
-[0.8,-0.8],[0.8,1.8],[1.1,1.8],[1.1,3.1],[0.8,3.1]]
+[0.8,-0.8],[0.6,1.8],[1,1.8],[1,3.1],[0.6,3.1]]
 
-FV3 = [[32,33,34,35,32]]
+FV3 = [[32,33,34,35,32],[1,2,3,4,1]]
 
-F3V = [[0,0],[4,0],[4,4],[0,4],[4.8,3.2],[4.8,-0.8],[0.8,-0.8],[0.8,3.2]]
-FV3V = [[0,1,2,3,0],[4,5,6,7,4]]
+F3V = [[0.8,0],[0.8,-0.8],[4.8,-0.8],[4.8,3.2],[4,3.2],[4,0]]
+FV3V = [[0,1,2,3,4,5,0]]
 
 #VIEW(floor3)
 
@@ -62,19 +62,34 @@ FV35V = [[0,1,2,3,0],[3,4,5,6,3]]
 V4 = [[0.8,3.2],[4.8,3.2],[4.8,-0.8],[0.8,-0.8]] 
 FV4 = [[0,1,2,3,0]]
 
+upstairs = CUBOID([1.35,2.58,0.3])
+upstairs = T([1,2])([0.3,1.1])(upstairs)
 
-floor0 = CUBOID([4,4,0.1])
-floor1 = CUBOID([4,4,0.1])
+floor0 = CUBOID([4,4,0.3])
+
+floor1 = CUBOID([4,4,0.3])
+floor1 = DIFFERENCE([floor1,upstairs])
 floor1 = T(3)(2.1)(floor1)
-floor2 = CUBOID([4,4,0.1])
-floor2 = T(3)(4.2)(floor2)
-floor3 = STRUCT(MKPOLS([F3V,FV3V]))
-floor3 = T(3)(6.3)(PROD([floor3, Q(0.1)]))
-floor3m = STRUCT(MKPOLS([F35V,FV35V]))
-floor3m = T(3)(8.6)(PROD([floor3m, Q(0.1)]))
 
-floor4 = CUBOID([4,4,0.1])
+
+floor2 = CUBOID([4,4,0.3])
+floor2 = DIFFERENCE([floor2,upstairs])
+floor2 = T(3)(4.2)(floor2)
+
+floor3ext = STRUCT(MKPOLS([F3V,FV3V]))
+floor3ext = (PROD([floor3ext, Q(0.3)]))
+floor3cube = CUBOID([4,4,0.3])
+floor3cube = DIFFERENCE([floor3cube,upstairs])
+#VIEW(floor3cube)
+floor3 = STRUCT([floor3cube,floor3ext])
+floor3 =T(3)(6.3)(floor3)
+
+floor3m = STRUCT(MKPOLS([F35V,FV35V]))
+floor3m = T(3)(8.4)(PROD([floor3m, Q(0.3)]))
+
+floor4 = CUBOID([4,4,0.3])
 floor4 = T([1,2,3])([0.8,-0.8,10.25])(floor4)
+
 
 def face2edge(CV):
 	edges = AA(sorted)(CAT([TRANS([face[: -1],face[1:]]) for face in CV]))
@@ -127,6 +142,7 @@ f2 = STRUCT(MKPOLS(mod1D2))
 f3 = STRUCT(MKPOLS(mod1D3))
 f4 = STRUCT(MKPOLS(mod1D4))
 
+f3 = DIFFERENCE([f3,upstairs])
 building = STRUCT([f0,f1,f2,f3,f4])
 
 C0V = [[0,1]]
@@ -150,4 +166,4 @@ f23d= STRUCT(MKPOLS(mod11D2))
 f33d = STRUCT(MKPOLS(mod11D3))
 building = STRUCT([floor0,floor1,floor2,floor3,floor3m,floor4,f03d,f13d,f23d,f33d])
 bulding = T(2)(0.8)(building)
-VIEW(bulding)
+#VIEW(bulding)

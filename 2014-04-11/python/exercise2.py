@@ -16,34 +16,37 @@ FVeastBase = [[0,1,4,2,0],[3,4,5,6,3]]
 
 eastBase = STRUCT(MKPOLS([VeastBase,FVeastBase]))
 eastBase = COLOR(wall_color)(eastBase)
-windowBaseS = CUBOID([0.75,1.9])
+eastBase = (PROD([eastBase, Q(0.3)]))
+windowBaseS = CUBOID([0.75,1.9,0.3])
 windowBaseS = T([1,2])([1.625,2.2])(windowBaseS)
 windowBaseS = COLOR(CYAN)(windowBaseS)
 
 
-windowBaseS1 = CUBOID([3.5,1.75])
+windowBaseS1 = CUBOID([3.8,1.75,0.3])
 windowBaseS1 = T([1,2])([0.25,4.5])(windowBaseS1)
 windowBaseS1 = COLOR(CYAN)(windowBaseS1)
 
-windowBaseS2 = CUBOID([0.48,2])
-windowBaseS2 = T([1,2])([0.22,6.35])(windowBaseS2)
+windowBaseS2 = CUBOID([0.86,2.05,0.3])
+windowBaseS2 = T([1,2])([3.2,6.25])(windowBaseS2)
 windowBaseS2 = COLOR(CYAN)(windowBaseS2)
-door = CUBOID([0.75,1.9])
+door = CUBOID([0.75,1.9,0.3])
 door = T([1,2])([1.625,0.1])(door)
 door = COLOR(door_color)(door)
-eastBase = STRUCT([eastBase,windowBaseS,windowBaseS1,windowBaseS2,door])
+#VIEW(windowBaseS2)
+eastBase = DIFFERENCE([eastBase,door,windowBaseS,windowBaseS1,windowBaseS2])
 #VIEW(eastBase)
 
 #East-Cube
 VeastCube = [[0,0],[4,0],[4,4.2],[0,4.2]]
 FVeastCube = [[0,1,2,3,0]]
-windowCubeS = CUBOID([3.45,3.65])
+windowCubeS = CUBOID([3.65,3.65,0.3])
 windowCubeS = T([1,2])([0.25,0.25])(windowCubeS)
 windowCubeS = COLOR(CYAN)(windowCubeS)
 eastCube = STRUCT(MKPOLS([VeastCube,FVeastCube]))
 eastCube = COLOR(wall_color)(eastCube)
+eastCube = (PROD([eastCube, Q(0.3)]))
 
-eastCube = STRUCT([eastCube,windowCubeS])
+eastCube = DIFFERENCE([eastCube,windowCubeS])
 #VIEW(eastCube)
 
 #viewEast
@@ -58,54 +61,58 @@ VnorthBase = [[0,0],[4,0],[4,8.7],[0,8.7]]
 FVnorthBase = [[0,1,2,3,0]]
 
 northBase = STRUCT(MKPOLS([VnorthBase,FVnorthBase]))
-
-windowBaseS = CUBOID([0.3,1.8])
+northBase = PROD([northBase, Q(0.3)])
+windowBaseS = CUBOID([0.3,1.8,0.3])
 windowBaseS = T([1,2])([0.25,1.25])(windowBaseS)
 windowBaseS = COLOR(CYAN)(windowBaseS)
 windowsBaseS = STRUCT(NN(3)([windowBaseS,T(2)(1.85)]))
 
-windowBaseSmall = CUBOID([0.3,0.85])
+windowBaseSmall = CUBOID([0.3,0.85,0.3])
 windowBaseSmall = T([1,2])([0.25,0.1])(windowBaseSmall)
 windowBaseSmall = COLOR(CYAN)(windowBaseSmall)
 
-windowBaseSCube = CUBOID([0.3,0.3])
+windowBaseSCube = CUBOID([0.3,0.3,0.3])
 windowBaseSCube = T([1,2])([3.2,0.3])(windowBaseSCube)
 windowBaseSCube = COLOR(CYAN)(windowBaseSCube)
-windowsBaseScube = STRUCT(NN(3)([windowBaseSCube,T(2)(2.45)]))
-VIEW(windowsBaseScube)
-northBase = STRUCT([northBase,windowsBaseS,windowBaseSmall,windowsBaseScube])
-#VIEW(nordBase)
+windowsBaseScube = STRUCT(NN(3)([windowBaseSCube,T(2)(2.45)]))#
+#VIEW(windowsBaseScube)
+northBase = DIFFERENCE([northBase,windowBaseSmall,windowBaseSCube,windowsBaseS])
+#VIEW(northBase)
 
 #East-Cube
 VnorthCube = [[0,0],[4,0],[4,4.2],[0,4.2]]
 FVnorthCube = [[0,1,2,3,0]]
-
+diff = CUBOID([3.3,2,0.3])
 northCube = STRUCT(MKPOLS([VnorthCube,FVnorthCube]))
+northCube = PROD([northCube, Q(0.3)])
+northCube = DIFFERENCE([northCube,diff])
+
 #VIEW(nordCube)
 
 #viewNord
 northCube = T(2)(6.25)(northCube)
-north = STRUCT([northBase,northCube])
+north = STRUCT([northBase])
 #VIEW(north)
 
 
 #West-base
 VWestBase = [[0,0],[4,0],[4,8.7],[0,8.7]]
 FVWestBase = [[0,1,2,3,0]]
-windowBaseS3W = CUBOID([0.67,1.05])
+windowBaseS3W = CUBOID([0.67,1.05,0.3])
 windowBaseS3W = T([1,2])([1.625,4.85])(windowBaseS3W)
 windowBaseS3W = COLOR(CYAN)(windowBaseS3W)
 westBase = STRUCT(MKPOLS([VWestBase,FVWestBase]))
-westBase = STRUCT([westBase,door,windowBaseS3W])
+westBase = (PROD([westBase, Q(0.3)]))
+westBase = DIFFERENCE([westBase,door,windowBaseS3W])
 #VIEW(westBase)
 
 #West-Cube
 
-windowBaseS1 = CUBOID([3.5,1.55])
+windowBaseS1 = CUBOID([3.5,1.55,0.3])
 windowBaseS1 = T([1,2])([0.25,2.45])(windowBaseS1)
 windowBaseS1 = COLOR(CYAN)(windowBaseS1)
 
-windowBaseS2 = CUBOID([0.6,2])
+windowBaseS2 = CUBOID([3.4,2.1,0.3])
 windowBaseS2 = T([1,2])([0.25,0.25])(windowBaseS2)
 windowBaseS2 = COLOR(CYAN)(windowBaseS2)
 
@@ -114,7 +121,8 @@ VWestCube = [[0,4],[4,4],[0,2.45],[4,2.45],[3.2,2.45],[3.2,0],[4,0]]
 FVWestCube = [[0,1,2,3,0],[3,4,5,6,3]]
 
 westCube = STRUCT(MKPOLS([VWestCube,FVWestCube]))
-westCube = STRUCT([westCube,windowBaseS1,windowBaseS2])
+westCube = (PROD([westCube, Q(0.3)]))
+westCube = DIFFERENCE([westCube,windowBaseS1,windowBaseS2])
 #VIEW(westCube)
 
 #viewWest
@@ -125,25 +133,27 @@ west = STRUCT([westCube,westBase])
 
 
 #South-base
-windowsBaseE = CUBOID([0.8,0.8])
+windowsBaseE = CUBOID([0.8,0.8,0.3])
 windowsBaseE = T([1,2])([1.8,2.9])(windowsBaseE)
 windowsBaseE = COLOR(CYAN)(windowsBaseE)
 windowsBaseE = STRUCT(NN(2)([windowsBaseE,T(2)(1.6)]))
-windowDownBase = CUBOID([0.5,1.45])
+windowDownBase = CUBOID([0.5,1.45,0.3])
 windowDownBase = T([1,2])([3.2,0.5])(windowDownBase)
 windowDownBase = COLOR(CYAN)(windowDownBase)
 VSouthBase = [[0,0],[4,0],[4,6.25],[0,6.25],[0.8,6.25],[0.8,8.7],[0,8.7]]
 FVSouthBase = [[0,1,2,3,0],[3,4,5,6,3]]
 southBase = STRUCT(MKPOLS([VSouthBase,FVSouthBase]))
-southBase = STRUCT([southBase,windowsBaseE,windowDownBase])
+southBase = (PROD([southBase, Q(0.3)]))
+southBase = DIFFERENCE([southBase,windowsBaseE,windowDownBase])
 #VIEW(southBase)
-windowCubeE = CUBOID([0.8,0.8])
+windowCubeE = CUBOID([0.8,0.8,0.3])
 windowCubeE = T([1,2])([1.65,1.65])(windowCubeE)
 windowCubeE = COLOR(CYAN)(windowCubeE)
 VSouthCube = [[0,0],[4,0],[4,4.2],[0,4.2]]
 FVSouthCube = [[0,1,2,3,0]]
 southCube = STRUCT(MKPOLS([VSouthCube,FVSouthCube]))
-southCube = STRUCT([southCube,windowCubeE])
+southCube = (PROD([southCube, Q(0.3)]))
+southCube = DIFFERENCE([southCube,windowCubeE])
 #VIEW(southCube)
 
 southCube = T(2)(6.25)(southCube)
@@ -186,5 +196,11 @@ WEST = STRUCT([northBase,northCube])
 b = exercise1.building
 b = R([1,2])(PI/2)(b)
 b = T(1)(4)(b)
+
+bulding_color = rgb2color([111,110,98])
+NORTH = COLOR(bulding_color)(NORTH)
+SOUTH = COLOR(bulding_color)(SOUTH)
+EAST = COLOR(bulding_color)(EAST)
+WEST = COLOR(bulding_color)(WEST)
 building = STRUCT([b,SOUTH,NORTH,EAST,WEST])
-VIEW(building)
+#VIEW(building)
