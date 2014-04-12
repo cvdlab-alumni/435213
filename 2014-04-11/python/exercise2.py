@@ -153,9 +153,7 @@ south = STRUCT([southBase,southCube])
 #VIEW(south)
 
 
-
-
-
+#Rotazione piani
 eastBase = R([2,3])(PI/2)(eastBase)
 eastBase = R([1,2])(PI/2)(eastBase)
 eastBase = T([1,2])([-4,-4.8])(eastBase)
