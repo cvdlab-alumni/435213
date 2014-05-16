@@ -219,7 +219,7 @@ NORTH = STRUCT([westBase,westCube])
 SOUTH = STRUCT([eastBase,eastCube])
 EAST = STRUCT([southBase,southCube])
 WEST = STRUCT([northBase,northCube])
-b = exercise1.building
+b = exercise1.horizontal_partition
 b = R([1,2])(PI/2)(b)
 b = T(1)(4)(b)
 
@@ -228,5 +228,5 @@ NORTH = COLOR(building_color)(NORTH)
 SOUTH = COLOR(building_color)(SOUTH)
 EAST = COLOR(building_color)(EAST)
 WEST = COLOR(building_color)(WEST)
-building = STRUCT([b,SOUTH,NORTH,EAST,WEST])
-VIEW(building)
+vertical_enclosures = STRUCT([b,SOUTH,NORTH,EAST,WEST])
+VIEW(vertical_enclosures)
