@@ -57,7 +57,6 @@ subhpc = cellNumbering ((subV,subCV),subhpc)(range(len(subCV)),CYAN,5)
 subhpc = cellNumbering ((subV,subVV),subhpc)(range(len(subVV)),GREEN,1)
 VIEW(subhpc)
 
-
 master = automatizeMultipleDiagram2cell(master,subDiagram,[3,8,13,1,6,11],[4,10])
 mV,mCV = master
 mVV = [[i] for i in range(len(mV))]
