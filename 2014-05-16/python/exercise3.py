@@ -2,11 +2,6 @@ from larcc import *
  
 DRAW = COMP([VIEW,STRUCT,MKPOLS])
 
-# def automatizeMultipleDiagram2cell(masterDiagram,subDiagram,toMergeList,toRemoveList,):
-# 	subDiagram = subDiagram[0],[cell for k,cell in enumerate(subDiagram[1]) if not (k in toRemoveList)]
-# 	for i in range(len(list(sort(toMergeList)))):
-# 		masterDiagram = diagram2cell(subDiagram,masterDiagram,toMergeList[i]-i)
-# 	return masterDiagram
 def automatizeMultipleDiagram2cell(masterDiagram,subDiagram,toMergeList,toRemoveList):
 	subDiagram = subDiagram[0],[cell for k,cell in enumerate(subDiagram[1]) if not (k in toRemoveList)]
 	toMergeList = list(sort(toMergeList))
