@@ -9,11 +9,10 @@ def rgb2color(rgb):
 	nb = float(b)/255
 	ng = float(g)/255
 	return [nr,nb,nb]
+
 grassColor = rgb2color([4,186,24])
 rodTreeColor = rgb2color([76,22,10])
 treeChiomaColor = rgb2color([4,186,24])
-
-
 treeChiomaColor = rgb2color([4,200,24])
 
 def doTree(coords):
@@ -80,14 +79,27 @@ scala1 = T([1,2])([6,12.8])(scala1)
 scala2 = T(3)(3.7)(scala1)
 scala3 = T([1,2,3])([8.9,28.8,1.8])(R([1,2])(PI)(scala1))
 scala4 = T(3)(3.7)(scala3)
+
+gradino0 =CUBOID([2.8,0.4,0.1])
+scala0 = STRUCT( CAT(N(10)([gradino0, T([2,3])([0.3,0.1])])))
+scala0 = R([1,2])(PI/2)(scala0)
+scala0 = T([1,2,3])([15.5,12.9,-1])(scala0)
+
 floor05 = CUBOID([3.2,3.5,0.1])
 floor05 = T([2,3])([12.7,1.8])(floor05)
 floor15 = T(3)(3.7)(floor05)
-
+floor0 = CUBOID([12.3,3.2,1])
+floor0 = T([2,3])([12.7,-1])(floor0)
 floor25 = CUBOID([6.3,3.5,0.1])
 floor25 = T([1,2,3])([6,12.8,3.8])(floor25)
 floor3 = T(3)(3.5)(floor25)
-upstairs = STRUCT([scala1,scala2,scala3,scala4,floor05,floor15,floor25,floor3])
+muroDestro = CUBOID([3.1,0.2,1.1])
+muroDestro = T([1,2,3])([12.3,12.9,-1])(muroDestro)
+muroSinistro = CUBOID([3.1,0.2,1.1])
+muroSinistro = T([1,2,3])([12.3,15.5,-1])(muroSinistro)
+scalaIngresso = STRUCT([muroDestro,muroSinistro,scala0])
+scalaIngresso = T(2)(0.1)(scalaIngresso)
+upstairs = STRUCT([scalaIngresso,scala1,scala2,scala3,scala4,floor0,floor05,floor15,floor25,floor3])
 
 
 #Balcone
@@ -153,10 +165,10 @@ balconi = STRUCT([balconiRetro,balconiFronte,tettiFronte,tettiRetro])
 #BASE
 
 domain = larDomain([48,48])
-controlPoints1 = [[0, 0,0], [-2, 6.5,0], [0, 13,0]]
-controlPoints2 = [[0, 0,1], [-2, 6.5,1], [0, 13,1]]
-controlPoints3 = [[0,0,1],[0,6.5,1],[0,13,1]]
-controlPoints4 = [[0,0,1],[-2,6.5,1],[0,13,1]]
+controlPoints1 = [[0, 0,0], [-2, 6.45,0], [0, 12.9,0]]
+controlPoints2 = [[0, 0,1], [-2, 6.45,1], [0, 12.9,1]]
+controlPoints3 = [[0,0,1],[0,6.45,1],[0,12.9,1]]
+controlPoints4 = [[0,0,1],[-2,6.45,1],[0,12.9,1]]
 b1 = BEZIER(S1)(controlPoints1)
 b2 = BEZIER(S1)(controlPoints2)
 b3 = BEZIER(S1)(controlPoints3)
@@ -171,18 +183,18 @@ model = STRUCT(MKPOLS(surface))
 modelBase = STRUCT(MKPOLS(surfaceBase))
 
 model = STRUCT([model,modelBase])
-model2 = T(2)(15.8)(model)
+model2 = T(2)(15.9)(model)
 
 modelRetro = STRUCT([model,model2])
 
-modelFronte = T(1)(12)(modelRetro)
+modelFronte = modelRetro
 modelFronte = R([1,2])(PI)(modelFronte)
-modelFronte = T([1,2])([24,28.5])(modelFronte)
+modelFronte = T([1,2])([12.3,28.8])(modelFronte)
 
 controlPoints5 = [[0, 0,0], [-2, 6.15,0], [0,12.3,0]]
 controlPoints6 = [[0, 0,1], [-2, 6.15,1], [0,12.3,1]]
-controlPoints7 = [[0,0,1],[0,6.15,1],[0,12.5,1]]
-controlPoints8 = [[0,0,1],[-2,6.15,1],[0,12.5,1]]
+controlPoints7 = [[0,0,1],[0,6.15,1],[0,12.3,1]]
+controlPoints8 = [[0,0,1],[-2,6.15,1],[0,12.3,1]]
 b5 = BEZIER(S1)(controlPoints5)
 b6 = BEZIER(S1)(controlPoints6)
 b7 = BEZIER(S1)(controlPoints7)
@@ -197,10 +209,10 @@ modelL = STRUCT(MKPOLS(surfaceLato))
 modelBase = STRUCT(MKPOLS(surfaceLatoBase))
 modelLato = STRUCT([modelL,modelBase])
 modelLato = R([1,2])(PI/2)(modelLato)
-modelLato = T(1)(12)(modelLato)
+modelLato = T(1)(12.3)(modelLato)
 
 modelLato2 = R([1,2])(PI)(modelLato)
-modelLato2 = T([1,2])([11.8,28.8])(modelLato2)
+modelLato2 = T([1,2])([12.29,28.8])(modelLato2)
 
 glass = [0.1,0.2,0.47,1,  0,0,0,0.48,  2,2,2,1, 0,0,0,1, 50]
 domain = larDomain([48,48])
@@ -248,7 +260,7 @@ treesY = STRUCT(NN(3)([treesX,T(1)(2.5)]))
 master = STRUCT(MKPOLS(master))
 building = STRUCT([master,upstairs,balconi])
 building = T(3)(1)(building)
-bcurve = STRUCT([building,model,modelRetro,modelFronte,modelLato,modelLato2,modelVetro,modelVetro2])
+bcurve = STRUCT([building,model,modelFronte,modelRetro,modelLato,modelLato2,modelVetro,modelVetro2])
 bcurve = T([1,2])([1,6])(bcurve)
 base = CUBOID([22,40])
 base = COLOR(grassColor)(base)

@@ -7,238 +7,118 @@ from larcc import *
 
 DRAW = COMP([VIEW,STRUCT,MKPOLS])
 master = assemblyDiagramInit([9,9,2])([[.3,4,.1,2,.1,2,.1,4,.3],[.3,4,.1,1.5,.1,2.5,.1,5,.3],[.3,3.2]])
-V,CV = master
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(CV)),CYAN,2)
-#VIEW(hpc)
-
-toRemove = [21,57,93,129,25,61,97,133,29,65,101,137,33,69,105,141,131,135,95,99,39,23,51,83,123,43,59,41]
-master = V,[cell for k,cell in enumerate(CV) if not (k in toRemove)]
-#DRAW(master)
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
 
 #PORTA INGRESSO
-toMerge = 76
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
 
+toMerge = 91
 diagram = assemblyDiagramInit([3,1,2])([[.55,.9,.55],[.3],[2.1,1.1]])
 master = diagram2cell(diagram,master,toMerge)
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-toRemove = [135]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
 
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
+toMerge = 163
+diagram = assemblyDiagramInit([1,3,1])([[.3],[.3,.9,.3],[2.1]])
+master = diagram2cell(diagram,master,toMerge)
 
 #PORTA FEDERICO&FRANCESCO
-toMerge = 51
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
+toMerge = 63
 diagram = assemblyDiagramInit([3,1,2])([[.5,.9,.7],[.3],[2.1,1.1]])
 master = diagram2cell(diagram,master,toMerge)
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-toRemove = [139]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
 
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
+toMerge = 170
+diagram = assemblyDiagramInit([1,3,1])([[.3],[.03,.03,.03],[2.1]])
+master = diagram2cell(diagram,master,toMerge)
 
 #PORTA CUCINA
-toMerge = 81
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
-diagram = assemblyDiagramInit([3,1,2])([[.7,.9,.5],[.3],[2.1,1.1]])
+toMerge = 101
+diagram = assemblyDiagramInit([3,1,2])([[.5,.9,.7],[.3],[2.1,1.1]])
 master = diagram2cell(diagram,master,toMerge)
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-toRemove = [143]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
 
+toMerge = 177
+diagram = assemblyDiagramInit([1,3,1])([[.3],[.03,.03,.03],[2.1]])
+master = diagram2cell(diagram,master,toMerge)
 
 #PORTA MIA
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toMerge = 53
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
-diagram = assemblyDiagramInit([3,1,2])([[.6,.9,.6],[.3],[2.1,1.1]])
+toMerge = 66
+diagram = assemblyDiagramInit([3,1,2])([[.5,.9,.7],[.3],[2.1,1.1]])
 master = diagram2cell(diagram,master,toMerge)
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-toRemove = [147]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
+
+toMerge = 184
+diagram = assemblyDiagramInit([1,3,1])([[.3],[.03,.03,.03],[2.1]])
+master = diagram2cell(diagram,master,toMerge)
 
 #PORTA BAGNO
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toMerge = 39
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
+toMerge = 47
 diagram = assemblyDiagramInit([1,3,2])([[.1],[.7,.9,.5],[2.1,1.1]])
 master = diagram2cell(diagram,master,toMerge)
 
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toRemove = [151]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
-
+toMerge = 191
+diagram = assemblyDiagramInit([3,1,1])([[.03,.01,.03],[.3],[2.1]])
+master = diagram2cell(diagram,master,toMerge)
 
 #PORTA JOHN
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toMerge = 89
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
-diagram = assemblyDiagramInit([1,3,2])([[.1],[.5,.9,.4],[2.1,1.1]])
+toMerge = 110
+diagram = assemblyDiagramInit([1,3,2])([[.1],[.03,.03,.03],[2.1,1.1]])
 master = diagram2cell(diagram,master,toMerge)
 
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toRemove = [155]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
-
+toMerge = 198
+diagram = assemblyDiagramInit([3,1,1])([[.03,.09,.03],[.3],[2.1]])
+master = diagram2cell(diagram,master,toMerge)
 
 #FINESTRA MIA
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
 toMerge = 15
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
-diagram = assemblyDiagramInit([1,3,3])([[.1],[3.5,3,3.5],[1,2,1]])
+diagram = assemblyDiagramInit([1,3,3])([[.3],[3.5,3,3.5],[1,2,1]])
 master = diagram2cell(diagram,master,toMerge)
 
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toRemove = [161]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
+toMerge = 207
+diagram = assemblyDiagramInit([3,6,3])([[.3,.9,.3],[.2,.6,.2,.2,.6,.2],[.6,1.8,.6]])
+master = diagram2cell(diagram,master,toMerge)
 
 #FINESTRA CUCINA
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toMerge = 124
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
+toMerge = 152
 diagram = assemblyDiagramInit([1,3,2])([[.1],[3.5,3,3.5],[2.5,1]])
 master = diagram2cell(diagram,master,toMerge)
 
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toRemove = [166]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
+toMerge = 266
+diagram = assemblyDiagramInit([3,1,1])([[.3,.9,.3],[.3],[2.5]])
+master = diagram2cell(diagram,master,toMerge)
 
 #FINESTRA JOHN
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toMerge = 116
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
+toMerge = 148
 diagram = assemblyDiagramInit([1,3,3])([[.1],[0.2,1.5,0.2],[1,2,1]])
 master = diagram2cell(diagram,master,toMerge)
 
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toRemove = [172]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
+toMerge = 275
+diagram = assemblyDiagramInit([3,6,3])([[.3,.9,.3],[.2,.4,.2,.2,.4,.2],[.6,1.8,.6]])
+master = diagram2cell(diagram,master,toMerge)
 
 #FINESTRA FEDERICO&FRANCESCO
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
 toMerge = 7
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
 diagram = assemblyDiagramInit([1,3,2])([[.1],[0.3,1.5,0.3],[2.5,1]])
 master = diagram2cell(diagram,master,toMerge)
 
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
-toRemove = [177]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
-#DRAW(master)
+toMerge = 334
+diagram = assemblyDiagramInit([3,1,1])([[.3,.9,.3],[.3],[2.5]])
+master = diagram2cell(diagram,master,toMerge)
 
 #FINESTRA BAGNO
-
-hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
-#VIEW(hpc)
-
 toMerge = 10
-cell = MKPOL([master[0],[[v+1 for v in  master[1][toMerge]]],None])
-#VIEW(STRUCT([hpc,cell]))
-
 diagram = assemblyDiagramInit([1,3,3])([[.1],[0.5,1,0.5],[1,2,1]])
 master = diagram2cell(diagram,master,toMerge)
 
+toMerge = 343
+diagram = assemblyDiagramInit([3,3,3])([[.3,.9,.3],[.2,.8,.2],[.6,2,.6]])
+master = diagram2cell(diagram,master,toMerge)
+
+
+#Definizione muri
 hpc = SKEL_1(STRUCT(MKPOLS(master)))
-hpc = cellNumbering (master,hpc)(range(len(master[1])),CYAN,2)
+hpc = cellNumbering (master,hpc)(range(len(master[1])),RED,0.3)
 #VIEW(hpc)
 
-toRemove = [183]
-master = master[0], [cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
+toRemoveRoom = [18,22,26,30,38,53,57,60,63,86,90,92,94,97,120,124,128,132]
+toRemoveDoor = [156,158,164,166,172,174,180,182,196,198]
+toRemoveWall = [20,36,40,47,55,77,88,92,114,122,126]
+toRemoveWindows = [266,268,326,290,211,247,220,256,351,369,317,281,336,338]
+toRemove = toRemoveRoom + toRemoveDoor + toRemoveWall + toRemoveWindows
+master = master[0],[cell for k,cell in enumerate(master[1]) if not (k in toRemove)]
 apartment = master
 DRAW(apartment)
