@@ -112,7 +112,7 @@ master = diagram2cell(diagram,master,toMerge)
 #Definizione muri
 hpc = SKEL_1(STRUCT(MKPOLS(master)))
 hpc = cellNumbering (master,hpc)(range(len(master[1])),RED,0.3)
-#VIEW(hpc)
+VIEW(hpc)
 
 toRemoveRoom = [18,22,26,30,38,53,57,60,63,86,90,92,94,97,120,124,128,132]
 toRemoveDoor = [156,158,164,166,172,174,180,182,196,198]
