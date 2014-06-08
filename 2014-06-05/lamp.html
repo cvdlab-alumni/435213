@@ -181,7 +181,7 @@
             var desk = new THREE.Object3D();
 
             var shelfGeometry = new THREE.BoxGeometry(100,50,2,100,50);
-            var shelfMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity: 0.5,transparent: true});
+            var shelfMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity: 0.8,transparent: true});
             var shelf = new THREE.Mesh(shelfGeometry, shelfMaterial);
             shelfMaterial.side = THREE.DoubleSide;
             shelf.receiveShadow = true;    
