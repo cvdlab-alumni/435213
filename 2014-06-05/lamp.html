@@ -86,8 +86,10 @@
 
                 return joint;
             }
+
             var spotLight = new THREE.SpotLight(0xffff00, 5, 0.0, Math.PI/3);
             var pointLight = new THREE.PointLight(0xffffff,100,8);
+            
             function mkHeadLamp (radius, height) {
 
                 var headLamp = new THREE.Object3D();
@@ -111,7 +113,6 @@
                 bulb = new THREE.Mesh(bulbGeometry,bulbMaterial);
                 bulb.position.set(0,-4,0);
                 head.add(bulb);
-
 
                 pointLight.target = bulb;
                 pointLight.position.set(0,3.5,0);
@@ -514,7 +515,6 @@
             .easing(TWEEN.Easing.Back.Out)
             .chain(rotation1)
             .start();
-
 
             render();
 
