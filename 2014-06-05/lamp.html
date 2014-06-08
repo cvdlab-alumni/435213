@@ -304,10 +304,12 @@
             var contHelpFolder = gui.addFolder("Controller&Helper");
             var axis_control = contHelpFolder.add(controls, 'showAxisHelper');
             var shadowCameraVisible_control = contHelpFolder.add(controls, 'showShadowCamera');
+            
             var spotLightIntensity = spotLight.intensity;
             var spotLightShadowDarkness = spotLight.shadowDarkness;
             var pointLightIntensity = pointLight.intensity;
             var pointLightShadowDarkness = pointLight.shadowDarkness;
+            
             var lightOnControl = contLampOptions.add(controls,'lightOn');
             
             lightOnControl.onChange(function(value) {
@@ -322,8 +324,8 @@
                 {
                     spotLight.intensity = spotLightIntensity;
                     spotLight.shadowDarkness = spotLightShadowDarkness;
-                    pointLight.intensity = spotLightIntensity;
-                    pointLight.shadowDarkness = spotLightShadowDarkness;
+                    pointLight.intensity = pointLightIntensity;
+                    pointLight.shadowDarkness = pointLightShadowDarkness;
                 }
             });
             contHelpFolder.add(controls, 'enableTrackball').onChange(function (value) {
