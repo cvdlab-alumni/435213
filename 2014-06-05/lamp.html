@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head> 
-        <title>Pixar lamp</title> 
+        <title>Homework 4: Lamp three.js</title> 
         <style>
             body {
-               1\margin: 0;
+               margin: 0;
                 overflow: hidden;
               }
 
@@ -56,13 +56,10 @@
             var axisHelper = new THREE.AxisHelper(3);
             scene.add(axisHelper);
 
-            // var light = new THREE.AmbientLight( 0x030303 ); // soft white light
-            // scene.add( light );
-
-            var lightColor = "#ffffff";
+            var lightColor = "#ffffcc";
             var directionalLight = new THREE.DirectionalLight(lightColor);
             directionalLight.position.set(0,0,200);
-            directionalLight.intensity = 0.3;
+            directionalLight.intensity = 0.5;
             scene.add(directionalLight);
 
             function mkArmsLamp (radius, height) {
@@ -110,7 +107,7 @@
                 sphere.add(head);
 
                 var bulbGeometry = new THREE.SphereGeometry(2, 8, 8);
-                var bulbMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, shading: THREE.FlatShading});
+                var bulbMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity: 0.5,transparent: true});
                 bulb = new THREE.Mesh(bulbGeometry,bulbMaterial);
                 bulb.position.set(0,-4,0);
                 head.add(bulb);
@@ -124,12 +121,11 @@
                 spotLight.distance = 60;
                 spotLight.castShadow = true;
                 spotLight.shadowCameraNear = 20;
-                spotLight.shadowCameraFar = 150;
+                spotLight.shadowCameraFar = 180;
                 spotLight.shadowCameraFov = 50;
                 spotLight.shadowDarkness = 1;
                 spotLight.shadowMapWidth = 1024;
                 spotLight.shadowMapHeight = 1024;
-                //spotLight.shadowCameraVisible = true;
 
                 var pointSpotLight = new THREE.Object3D();
                 spotLight.position.set(0,-3,0);
@@ -185,7 +181,7 @@
             var desk = new THREE.Object3D();
 
             var shelfGeometry = new THREE.BoxGeometry(100,50,2,100,50);
-            var shelfMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity: 0.3,transparent: true});
+            var shelfMaterial = new THREE.MeshLambertMaterial({color: 0xffffff,opacity: 0.5,transparent: true});
             var shelf = new THREE.Mesh(shelfGeometry, shelfMaterial);
             shelfMaterial.side = THREE.DoubleSide;
             shelf.receiveShadow = true;    
@@ -248,8 +244,10 @@
                 this.gamma = joint2.rotation.y;
                 this.epsilon = joint3.sphere.rotation.x;
 
-                this.showAxisHelper = true;
+                this.showAxisHelper = false;
+                this.showShadowCamera = false;
                 this.enableTrackball = false;
+                this.enableShadowCameraVisible = false;
                 this.lightOn = true;
 
                 this.size = 10;
@@ -272,10 +270,10 @@
 
             var contLampPositionFolder = gui.addFolder("Lamp position");
 
-            contLampPositionFolder.add(controls, 'positionLampX', -40, 40).onChange(function (value) {
+            contLampPositionFolder.add(controls, 'positionLampX', -40, 42).onChange(function (value) {
                 lamp.position.x = value; 
             });
-            contLampPositionFolder.add(controls, 'positionLampY', -15, 20).onChange(function (value) {
+            contLampPositionFolder.add(controls, 'positionLampY', -15, 17).onChange(function (value) {
                 lamp.position.y = value; 
             });
 
@@ -305,11 +303,13 @@
             var contLampOptions = gui.addFolder("Lamp Options");
             var contHelpFolder = gui.addFolder("Controller&Helper");
             var axis_control = contHelpFolder.add(controls, 'showAxisHelper');
+            var shadowCameraVisible_control = contHelpFolder.add(controls, 'showShadowCamera');
             var spotLightIntensity = spotLight.intensity;
             var spotLightShadowDarkness = spotLight.shadowDarkness;
             var pointLightIntensity = pointLight.intensity;
             var pointLightShadowDarkness = pointLight.shadowDarkness;
             var lightOnControl = contLampOptions.add(controls,'lightOn');
+            
             lightOnControl.onChange(function(value) {
 
                 if(!controls.lightOn){
@@ -332,6 +332,10 @@
 
             axis_control.onChange(function (value) {
                 axisHelper.visible = value;
+            });
+
+            shadowCameraVisible_control.onChange(function (value) {
+                spotLight.shadowCameraVisible = value;
             });
 
             var options = {
@@ -384,7 +388,7 @@
             .to({add:lamp});
             
             var sphereShadowBounce = new TWEEN.Tween(sphereShadow.position)
-            .to({ x: 10, y: 10, z: 34 }, 600)
+            .to({ x: 0, y: 15, z: 34 }, 600)
             .easing(TWEEN.Easing.Bounce.Out)
             .chain(addDesk);
             
@@ -399,12 +403,18 @@
             var leaveText4 = new TWEEN.Tween(text4.position)
             .to({x:-120,y:-15,z:32},800);   
 
+            var movementGoNext = new TWEEN.Tween(lamp.position)
+            .delay(500)
+            .to({x:-42,y:-17,z:32},800);
+
             var movement7 = new TWEEN.Tween(lamp.position)
-            .to({x:-42,y:-15,z:32},800);
+            .delay(1000)
+            .to({x:0,y:-15,z:32},800)
+            .chain(movementGoNext,leaveText4,scaleText4);
 
             var rotation7 = new TWEEN.Tween(lamp.rotation)
             .to({z: Math.PI},1000)
-            .chain(movement7,leaveText4,scaleText4);
+            .chain(movement7);
 
             var scaleText2 = new TWEEN.Tween(text2.scale)
             .to({ x: 0.0001, y: 0.000001, z: 0.000001 }, 800)
@@ -420,10 +430,10 @@
             .to({x:120,y:-15,z:32},800);
 
             var goNext = new TWEEN.Tween(lamp.position)
-            .to({x:46,y:-15,z:32},800);
+            .to({x:42,y:-15,z:32},800);
 
             var rotation6 = new TWEEN.Tween(lamp.rotation)
-            .to({z: Math.PI/4},1000)
+            .to({z: 0},1000)
             .chain(goNext,leaveText1,leaveText2,scaleText1,scaleText2);
 
             var scaled = new TWEEN.Tween(text3.scale)
@@ -455,7 +465,7 @@
 
             var restore = new TWEEN.Tween(lamp.rotation)
             .delay(300)
-            .to({y: -Math.PI/64},500)
+            .to({y: 0},500)
             .chain(movement2);
 
             var fall = new TWEEN.Tween(lamp.rotation)
@@ -485,7 +495,7 @@
 
             var rotation3 = new TWEEN.Tween(lamp.rotation)
             .delay(500)
-            .to({z: Math.PI/8},600)
+            .to({z: 0},600)
             .chain(lightOff,lightOff2);
 
             var rotation2= new TWEEN.Tween(lamp.rotation)
@@ -499,7 +509,8 @@
 
             lamp.position.set(0,0,0);
             var lampTween = new TWEEN.Tween(lamp.position)
-            .to({x:42, y:0, z:0},3500)
+            .to({x:42, y:0, z:0},6000)
+            .easing(TWEEN.Easing.Back.Out)
             .chain(rotation1)
             .start();
 
@@ -517,7 +528,7 @@
 
             function initStats() {
                 var stats = new Stats();
-                //TWEEN.update();
+                TWEEN.update();
                 stats.setMode(0); // 0: fps, 1: ms
                 $('body').append(stats.domElement);
                 return stats;
